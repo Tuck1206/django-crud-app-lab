@@ -8,20 +8,20 @@
 <section class="page-header">
   <h1>Shoe List</h1>
   <img
-    src="{% %}"
-    alt=" "
+    src="https://cdna.lystit.com/300/375/tr/photos/kickscrew/219ca748/puma-BROWN-1948-Mid-High-Top.jpeg"
+    alt=" Puma High Tops"
   />
   <img
-    src="{% %}"
-    alt=" "
+    src="https://rebelliousfashion.com/cdn/shop/products/Brooke-Black-Suede-Lace-Up-Heels-3_4b193289-a1a4-4155-b759-ec510261acef.jpg?v=1629612013"
+    alt="High Heels "
   />
   <img
-    src="{% %}"
-    alt=" "
+    src="https://mysportsshoe.com/wp-content/uploads/2019/02/806667_01-768x768.jpg"
+    alt=" Retro Jordans "
   />
   <img
-    src="{%  %}"
-    alt=" "
+    src="https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/b032abc3-ec58-4857-a216-81b36a9f8fdd/NIKE+FLEX+CONTROL+TR4.png"
+    alt=" Nike "
   />
 </section>
 
@@ -32,13 +32,15 @@
       <div class="card-img-container">
       </div>
       <h2 class="card-title">{{ shoe.name }}</h2>
-      <p>A {{ shoe.Make }} Shoe, costing {{ shoe.price }}</p>
-      <p>Size: {{ shoe.size }}.</p>
-      <p>color:{{ shoe.color }}.</p>
-      <p>Gender:{{ shoe.gender}}.</p>
-      <p><small>{{ shoe.description }}</small></p>
+      <img src= "{{shoe.url}}">
+      <h1>A {{ shoe.make }} Shoe, costing {{ shoe.price }}</h1>
+      <h1>Size: {{ shoe.size }}.</h1>
+      <h1>color:{{ shoe.color }}.</h1>
+      <h1>Gender:{{ shoe.gender}}.</h1>
+      <h3>{{ shoe.description }}</h3>
     </div>
   </div>
+{% endfor %}
 </section>
 
 {% endblock %}
