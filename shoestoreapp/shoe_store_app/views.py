@@ -7,8 +7,7 @@ from django.http import HttpResponse
 
 # Define the home view function
 def home(request):
-    # Send a simple HTML response
-    return HttpResponse('<h1> Welcome To The Shoe Store </h1>')
+    return render(request, 'home.html')
 
 def about(request):
     return render(request, 'about.html')
@@ -38,7 +37,7 @@ shoes = [
    'The colorway is inspired by Jordan’s college career at the University of North Carolina, and the striking women’s Jordan 1 features a full patent leather build that shines in tones of Blue Chill,' \
    ' Obsidian, and white across the upper with more of the Carolina blue tone for the outsole. It also features the Air Jordan wings logo embossed onto the ankle for an even cleaner look to the glossy colorway. ' \
    'The women’s Air Jordan 1 High “UNC Patent Leather” released in February 2019.', 650, ' obsidian, blue chill-white', 9.5, 'Women'),
-   shoe('1948 Mid Brown High Top', 'PUMA', 'The PUMA 1948 Mid Brown High Top is a mid-top sneaker that gives a blend of casual and sporty vibes' \
+    shoe('1948 Mid Brown High Top', 'PUMA', 'The PUMA 1948 Mid Brown High Top is a mid-top sneaker that gives a blend of casual and sporty vibes' \
    ' — elevated above a regular low-top but not quite as tall as a full boot.', 78.40, 'Brown', 10, 'Unisex')
 ]
 
