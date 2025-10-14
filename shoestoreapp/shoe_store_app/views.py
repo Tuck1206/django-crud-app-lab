@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from shoe_store_app.models import Shoe
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Create your views here.
 
 # Import HttpResponse to send text-based responses
@@ -52,4 +53,18 @@ def shoe_detail(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
     return render(request, 'shoes/detail.html', {'shoe': shoe})
 
+
+
+
+class ShoeCreate(CreateView):
+    model = Shoe
+    fields = '__all__'
+
+class ShoeUpdate(UpdateView):
+    model = Shoe
+    fields = ['make', 'price', 'size', 'gender', 'color', 'description']
+
+class ShoeDelete(DeleteView):
+    model = Shoe
+    success_url = '/shoes/'
 

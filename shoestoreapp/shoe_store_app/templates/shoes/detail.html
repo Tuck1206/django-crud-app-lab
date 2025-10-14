@@ -16,6 +16,11 @@
         <h1>color:{{ shoe.color }}.</h1>
         <h1>Gender:{{ shoe.gender}}.</h1>
         <h3>{{ shoe.description }}</h3>
+        
+  <div class="shoe-actions">
+    <a href="{% url 'shoe_update' shoe.id %}" class="btn warn">Edit</a>
+    <a href="{% url 'shoe_delete' shoe.id %}" class="btn danger">Delete</a>
+  </div>
     </div>
 </section>
 {% endblock %}

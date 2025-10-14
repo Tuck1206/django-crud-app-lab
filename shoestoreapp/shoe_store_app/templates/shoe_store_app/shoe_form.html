@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<div class="page-header">
+    {% if shoe %}
+    <h1>Edit {{ shoe.name }}</h1>
+  {% else %}
+    <h1>Add a Shoe</h1>
+  {% endif %}
+  <img src="https://th.bing.com/th/id/OIP.LAIxXhln61gluzQQ9hWbfgHaFn?w=248&h=188&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3" alt="Black Chucks" />
+</div>
+
+<form action="" method="post" class="form-container">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <button type="submit" class="btn submit">Submit!</button>
+</form>
+
+{% endblock %}
