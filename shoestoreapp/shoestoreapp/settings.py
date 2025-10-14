@@ -75,8 +75,8 @@ WSGI_APPLICATION = 'shoestoreapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'shoes',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'shoecollector',
     }
 }
 
