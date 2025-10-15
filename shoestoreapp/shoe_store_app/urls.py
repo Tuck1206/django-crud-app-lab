@@ -9,9 +9,12 @@ urlpatterns = [
     path('shoes/create/', views.ShoeCreate.as_view(), name='shoe_create'),
     path('shoes/<int:pk>/update/', views.ShoeUpdate.as_view(), name='shoe_update'),
     path('shoes/<int:pk>/delete/', views.ShoeDelete.as_view(), name='shoe_delete'),
-    path('accessories/create/', views.AccessoriesCreate.as_view(), name='accessories_create'),
-    path('accessories/<int:pk>/', views.AccessoriesDetail.as_view(), name='accessories-detail'),
-    path('accessories/', views.AccessoriesList.as_view(), name='accessories-index')
+    path('accessory/create/', views.AccessoryCreate.as_view(), name='accessory_create'),
+    path('accessory/<int:pk>/', views.AccessoryDetail.as_view(), name='accessory_detail'),
+    path('accessory/', views.AccessoryList.as_view(), name='accessory_index'),
+    path('accessory/<int:pk>/update/', views.AccessoryUpdate.as_view(), name='accessory_update'),
+    path('accessory/<int:pk>/delete/', views.AccessoryDelete.as_view(), name='accessory_delete')
+
 
 
 ]

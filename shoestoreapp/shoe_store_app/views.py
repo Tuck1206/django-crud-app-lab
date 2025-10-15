@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from shoe_store_app.models import Shoe, Accessories
+from django.urls import reverse
+from shoe_store_app.models import Shoe, Accessory
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 # Create your views here.
@@ -70,15 +71,21 @@ class ShoeDelete(DeleteView):
     success_url = '/shoes/'
 
     
-class AccessoriesCreate(CreateView):
-    model = Accessories
+class AccessoryCreate(CreateView):
+    model = Accessory
     fields = '__all__'
 
 
-class AccessoriesList(ListView):
-    model = Accessories
+class AccessoryList(ListView):
+    model = Accessory
 
-class AccessoriesDetail(DetailView):
-    model = Accessories
+class AccessoryDetail(DetailView):
+    model = Accessory
 
-    
+class AccessoryUpdate(UpdateView):
+    model = Accessory
+    fields = ['name', 'color']
+
+class AccessoryDelete(DeleteView):
+    model = Accessory
+    success_url = '/accessory/'

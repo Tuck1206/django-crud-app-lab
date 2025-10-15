@@ -1,0 +1,31 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/accessory/accessory-index.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<section class="page-header">
+  <h1>All Shoe Accessories</h1>
+  <img src="https://m.media-amazon.com/images/I/61mLkjgUHzL._AC_SY300_SX300_QL70_FMwebp_.jpg" alt=" Shoe Cover" />
+  <img src="https://m.media-amazon.com/images/I/71s3T7dbsML._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Heel Lifts" />
+  <img src="https://tse1.mm.bing.net/th/id/OIP.4QhBWX1M1PKlzHQp6MfxyQHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Croc Pins" />
+  <img src="https://i.pinimg.com/736x/5c/cb/7a/5ccb7a5014136f96597f76382eb30f5f.jpg" alt="Shoe Laces" />
+  <img src="https://tse2.mm.bing.net/th/id/OIP.mRFVOMlAGsm6N5k58RxHzAHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Shoe Polish" />
+</section>
+
+<section class="card-container">
+  {% for accessory in accessory_list %}
+    <div class="card" style="border-color: {{ accessory.color }}">
+      <div class="card-bg" style="background-color: {{ accessory.color }}"></div>
+      <a href="{% url 'accessory_detail' accessory.id %}">
+        <div class="card-content">
+          <h2>{{ accessory.name }}</h2>
+          <p>A {{ accessory.color }} Accessory</p>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
