@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from shoe_store_app.models import Shoe
+from shoe_store_app.models import Shoe, Accessories
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 # Create your views here.
 
 # Import HttpResponse to send text-based responses
@@ -68,3 +69,16 @@ class ShoeDelete(DeleteView):
     model = Shoe
     success_url = '/shoes/'
 
+    
+class AccessoriesCreate(CreateView):
+    model = Accessories
+    fields = '__all__'
+
+
+class AccessoriesList(ListView):
+    model = Accessories
+
+class AccessoriesDetail(DetailView):
+    model = Accessories
+
+    
