@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from shoe_store_app.models import Shoe, Accessory
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -53,14 +53,25 @@ def shoe_index(request):
 
 def shoe_detail(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
-    return render(request, 'shoes/detail.html', {'shoe': shoe})
+    accessory_shoe_doesnt_have = Accessory.objects.exclude(id__in = shoe.accessory.all().values_list('id'))
+    return render(request, 'shoes/detail.html', {'shoe': shoe, 'accessory': accessory_shoe_doesnt_have})
+
+def associate_accessory(request, shoe_id, accessory_id):
+    Shoe.objects.get(id=shoe_id).accessory.add(accessory_id)
+    return redirect('shoe_detail', shoe_id=shoe_id)
+
+def remove_accessory(request, shoe_id, accessory_id):
+    Shoe.objects.get(id=shoe_id).accessory.remove(accessory_id)
+    return redirect('shoe_detail', shoe_id=shoe_id)
+
+
 
 
 
 
 class ShoeCreate(CreateView):
     model = Shoe
-    fields = '__all__'
+    fields = ['name', 'make', 'price', 'size', 'gender', 'color', 'description']
 
 class ShoeUpdate(UpdateView):
     model = Shoe
@@ -89,3 +100,4 @@ class AccessoryUpdate(UpdateView):
 class AccessoryDelete(DeleteView):
     model = Accessory
     success_url = '/accessory/'
+

@@ -1,26 +1,79 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block head %}
-<link rel="stylesheet" href="{% static 'css/cats/cat-detail.css' %}" />
+<link rel="stylesheet" href="{% static 'css/shoes/shoe_detail.css' %}" />
 {% endblock %}
 {% block content %}
 <section class="shoe-container">
-    <div class="shoe-img">
-        <img src="https://th.bing.com/th/id/OIP.OMrUEYOEuA6SIC2WBHmtJQHaFH?w=281&h=194&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3"
-            alt="A Nike Shoe" />
-    </div>
-    <div class="shoe-details">
-        <h1>{{ shoe.name }}</h1>
-        <h1>A {{ shoe.make }} Shoe, costing {{ shoe.price }}</h1>
-        <h1>Size: {{ shoe.size }}.</h1>
-        <h1>color:{{ shoe.color }}.</h1>
-        <h1>Gender:{{ shoe.gender}}.</h1>
-        <h3>{{ shoe.description }}</h3>
-        
-  <div class="shoe-actions">
-    <a href="{% url 'shoe_update' shoe.id %}" class="btn warn">Edit</a>
-    <a href="{% url 'shoe_delete' shoe.id %}" class="btn danger">Delete</a>
+  <div class="shoe-img">
+    <img
+      src="https://th.bing.com/th/id/OIP.OMrUEYOEuA6SIC2WBHmtJQHaFH?w=281&h=194&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3"
+      alt="A Nike Shoe" />
   </div>
+  <div class="shoe-details">
+    <h1>{{ shoe.name }}</h1>
+    <h1>A {{ shoe.make }} Shoe, costing {{ shoe.price }}</h1>
+    <h1>Size: {{ shoe.size }}.</h1>
+    <h1>color:{{ shoe.color }}.</h1>
+    <h1>Gender:{{ shoe.gender}}.</h1>
+    <h3>{{ shoe.description }}</h3>
+    <div class="accessory-container">
+
+      <section class="accessories">
+        <div class="subsection-title">
+          <h2>Accessories</h2>
+          <img src="https://m.media-amazon.com/images/I/71s3T7dbsML._AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Heel Lifts" />
+          <img src="https://tse1.mm.bing.net/th/id/OIP.4QhBWX1M1PKlzHQp6MfxyQHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3"
+          alt="Croc Pins" />
+          <img src="https://i.pinimg.com/736x/5c/cb/7a/5ccb7a5014136f96597f76382eb30f5f.jpg" alt="Shoe Laces" />
+        <img src="https://tse2.mm.bing.net/th/id/OIP.mRFVOMlAGsm6N5k58RxHzAHaHa?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3"
+          alt="Shoe Polish" />
+      </div>
+      <h3>{{ shoe.name }}'s Accessories</h3>
+      <div class="subsection-content">
+        {% if shoe.accessory.count %}
+        {% for accessory in shoe.accessory.all %}
+        <div class="accessory-container">
+          <div class="color-block" style="background-color: {{ accessory.color }}"></div>
+          <a href="{% url 'accessory_detail' accessory.id %}">
+            <p>A {{ accessory.color }} {{ accessory.name }}</p>
+          </a>
+          <form action="{% url 'remove-accessory' shoe.id accessory.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Remove Accessory</button>
+          </form>
+
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="no-Accessory">{{shoe.name}} doesn't have any Accessories!</p>
+        {% endif %}
+      </div>
+      <h3>Available Accessories</h3>
+      <div class="subsection-content">
+        {% if accessory.count %}
+        {% for accessory in accessory.all %}
+        <div class="accessory-container">
+          <div class="color-block" style="background-color: {{ accessory.color }}"></div>
+          <a href="{% url 'accessory_detail' accessory.id %}">
+            <p>A {{ accessory.color }} {{ accessory.name }}</p>
+          </a>
+          <form action="{% url 'associate-accessory' shoe.id accessory.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn submit">Add Accessory</button>
+          </form>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="all-accessory">{{shoe.name}} already has all the available Accessories 🥳</p>
+        {% endif %}
+      </div>
+    </section>
+    <div class="shoe-actions">
+      <a href="{% url 'shoe_update' shoe.id %}" class="btn warn">Edit</a>
+      <a href="{% url 'shoe_delete' shoe.id %}" class="btn danger">Delete</a>
     </div>
+  </div>
+  </div>
 </section>
 {% endblock %}
