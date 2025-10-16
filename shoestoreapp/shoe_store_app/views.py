@@ -3,14 +3,36 @@ from django.urls import reverse
 from shoe_store_app.models import Shoe, Accessory
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create your views here.
 
 # Import HttpResponse to send text-based responses
 from django.http import HttpResponse
 
 # Define the home view function
-def home(request):
-    return render(request, 'home.html')
+class Home(LoginView):
+    template_name = 'home.html'
+    
+    
+def signup(request):
+    error_message = ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('shoe_index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'signup.html', context)
+
 
 def about(request):
     return render(request, 'about.html')
@@ -45,21 +67,21 @@ def about(request):
 #    ' — elevated above a regular low-top but not quite as tall as a full boot.', 78.40, 'Brown', 10, 'Unisex','https://cdna.lystit.com/300/375/tr/photos/kickscrew/219ca748/puma-BROWN-1948-Mid-High-Top.jpeg')
 # ]
 
-
+@login_required
 def shoe_index(request):
-    shoes= Shoe.objects.all()
+    shoes= Shoe.objects.filter(user=request.user)
     return render(request, 'shoes/index.html', {'shoes': shoes})
 
-
+@login_required
 def shoe_detail(request, shoe_id):
     shoe = Shoe.objects.get(id=shoe_id)
     accessory_shoe_doesnt_have = Accessory.objects.exclude(id__in = shoe.accessory.all().values_list('id'))
     return render(request, 'shoes/detail.html', {'shoe': shoe, 'accessory': accessory_shoe_doesnt_have})
-
+@login_required
 def associate_accessory(request, shoe_id, accessory_id):
     Shoe.objects.get(id=shoe_id).accessory.add(accessory_id)
     return redirect('shoe_detail', shoe_id=shoe_id)
-
+@login_required
 def remove_accessory(request, shoe_id, accessory_id):
     Shoe.objects.get(id=shoe_id).accessory.remove(accessory_id)
     return redirect('shoe_detail', shoe_id=shoe_id)
@@ -69,35 +91,38 @@ def remove_accessory(request, shoe_id, accessory_id):
 
 
 
-class ShoeCreate(CreateView):
+class ShoeCreate(LoginRequiredMixin, CreateView):
     model = Shoe
     fields = ['name', 'make', 'price', 'size', 'gender', 'color', 'description']
+    def form_valid(self, form):
+        form.instance.user = self.request.user 
+        return super().form_valid(form)
 
-class ShoeUpdate(UpdateView):
+class ShoeUpdate(LoginRequiredMixin, UpdateView):
     model = Shoe
     fields = ['make', 'price', 'size', 'gender', 'color', 'description']
 
-class ShoeDelete(DeleteView):
+class ShoeDelete(LoginRequiredMixin, DeleteView):
     model = Shoe
     success_url = '/shoes/'
 
     
-class AccessoryCreate(CreateView):
+class AccessoryCreate(LoginRequiredMixin, CreateView):
     model = Accessory
     fields = '__all__'
 
 
-class AccessoryList(ListView):
+class AccessoryList(LoginRequiredMixin, ListView):
     model = Accessory
 
-class AccessoryDetail(DetailView):
+class AccessoryDetail(LoginRequiredMixin, DeleteView):
     model = Accessory
 
-class AccessoryUpdate(UpdateView):
+class AccessoryUpdate(LoginRequiredMixin, UpdateView):
     model = Accessory
     fields = ['name', 'color']
 
-class AccessoryDelete(DeleteView):
+class AccessoryDelete(LoginRequiredMixin, DeleteView):
     model = Accessory
     success_url = '/accessory/'
 
