@@ -10,7 +10,6 @@
   --card-bg: rgba(25, 25, 35, 0.85);
 }
 
-/* === GLOBAL STYLING === */
 body {
   background: radial-gradient(circle at top right, #0a0c13 0%, #030308 75%);
   color: var(--text-light);
@@ -21,7 +20,6 @@ body {
   overflow-x: hidden;
 }
 
-/* === PAGE HEADER === */
 h1 {
   font-family: 'Orbitron', sans-serif;
   font-size: 2.4rem;
@@ -39,7 +37,6 @@ h1 {
   100% { text-shadow: 0 0 10px rgb(255, 0, 255), 0 0 20px rgb(255, 0, 255); }
 }
 
-/* === FUTURISTIC DIVIDER === */
 hr {
   width: 280px;
   border: none;
@@ -57,7 +54,6 @@ hr {
   100% { box-shadow: 0 0 15px rgb(255, 0, 247); }
 }
 
-/* === MAIN CONTENT === */
 .page-content {
   max-width: 700px;
   margin: 0 auto 5rem;
@@ -74,7 +70,6 @@ hr {
   animation: fadeInUp 1s ease;
 }
 
-/* faint holographic overlay inside the card */
 .page-content::before {
   content: "";
   position: absolute;
@@ -94,19 +89,16 @@ hr {
   transition: 0.4s ease;
 }
 
-/* text stays on top of overlay */
 .page-content p, .page-content span {
   position: relative;
   z-index: 2;
 }
 
-/* === ANIMATION === */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* === RESPONSIVE === */
 @media (max-width: 600px) {
   h1 {
     font-size: 1.8rem;
