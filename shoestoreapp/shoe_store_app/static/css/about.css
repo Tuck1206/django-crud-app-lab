@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap');
+
+:root {
+  --accent: #ff00bf;
+  --accent2: #ff0099;
+  --warn: #ff07ac;
+  --bg-dark: #05060a;
+  --text-light: #e5e7eb;
+  --text-muted: #9b9ba5;
+  --card-bg: rgba(25, 25, 35, 0.85);
+}
+
+/* === GLOBAL STYLING === */
+body {
+  background: radial-gradient(circle at top right, #0a0c13 0%, #030308 75%);
+  color: var(--text-light);
+  font-family: 'Rajdhani', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* === PAGE HEADER === */
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-shadow: 0 0 12px rgb(255, 0, 230);
+  margin-top: 5rem;
+  letter-spacing: 2px;
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 10px rgb(255, 0, 247), 0 0 20px rgb(255, 0, 204); }
+  50% { text-shadow: 0 0 20px rgba(255,0,255,0.9), 0 0 40px rgb(251, 0, 255); }
+  100% { text-shadow: 0 0 10px rgb(255, 0, 255), 0 0 20px rgb(255, 0, 255); }
+}
+
+/* === FUTURISTIC DIVIDER === */
+hr {
+  width: 280px;
+  border: none;
+  height: 3px;
+  margin: 1.5rem auto 3rem;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 15px rgb(255, 0, 234);
+  animation: lineGlow 3s linear infinite;
+}
+
+@keyframes lineGlow {
+  0% { box-shadow: 0 0 15px rgb(255, 0, 255); }
+  50% { box-shadow: 0 0 30px rgb(255, 0, 238); }
+  100% { box-shadow: 0 0 15px rgb(255, 0, 247); }
+}
+
+/* === MAIN CONTENT === */
+.page-content {
+  max-width: 700px;
+  margin: 0 auto 5rem;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: var(--text-light);
+  background: var(--card-bg);
+  border: 1px solid rgb(255, 0, 247);
+  border-radius: 18px;
+  padding: 2.5rem;
+  box-shadow: 0 0 35px rgb(255, 0, 212);
+  letter-spacing: 0.7px;
+  position: relative;
+  animation: fadeInUp 1s ease;
+}
+
+/* faint holographic overlay inside the card */
+.page-content::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(circle, rgb(255, 0, 234), transparent 70%);
+  filter: blur(45px);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.page-content:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 0 55px rgb(255, 0, 255);
+  transition: 0.4s ease;
+}
+
+/* text stays on top of overlay */
+.page-content p, .page-content span {
+  position: relative;
+  z-index: 2;
+}
+
+/* === ANIMATION === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.8rem;
+    margin-top: 3rem;
+  }
+
+  .page-content {
+    font-size: 1.1rem;
+    width: 85%;
+    padding: 1.8rem;
+  }
+
+  hr {
+    width: 200px;
+  }
+}

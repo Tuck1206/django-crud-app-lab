@@ -1,6 +1,6 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/accessory/delete.css' %}" />
+{% endblock %} {% block content %}
 
 <div class="page-header">
   <h1>Delete {{ object.name }} ?</h1>
