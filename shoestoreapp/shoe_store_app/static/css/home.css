@@ -1,8 +1,3 @@
-/* ==============================
-   FUTURISTIC HOME PAGE STYLING
-   ============================== */
-
-/* Import futuristic fonts */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap');
 
 :root {
@@ -12,7 +7,6 @@
   --text-light: #e6e6e6;
 }
 
-/* --- Global Page Base --- */
 body {
   background: radial-gradient(circle at top left, #0b0c10, #05060a 70%);
   font-family: 'Rajdhani', sans-serif;
@@ -22,7 +16,6 @@ body {
   overflow: hidden;
 }
 
-/* --- Center Logo & Heading --- */
 .logo-container {
   height: 100vh;
   display: flex;
@@ -35,7 +28,6 @@ body {
   overflow: hidden;
 }
 
-/* Subtle floating glow animation for futuristic ambience */
 @keyframes floatGlow {
   0%, 100% {
     filter: drop-shadow(0 0 20px rgba(0,255,240,0.4));
@@ -47,7 +39,6 @@ body {
   }
 }
 
-/* --- Shoe Image Styling --- */
 .shoe-container img {
   width: 320px;
   height: auto;
@@ -62,7 +53,6 @@ body {
   filter: brightness(1.1) drop-shadow(0 0 45px rgba(0,255,240,0.8));
 }
 
-/* --- Title Styling --- */
 .shoe-container h1 {
   font-family: 'Orbitron', sans-serif;
   font-size: 3.5rem;
@@ -74,7 +64,6 @@ body {
   animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Glow pulse animation for the title */
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -86,7 +75,6 @@ body {
   }
 }
 
-/* Optional subtle moving background light effect */
 .logo-container::before {
   content: '';
   position: absolute;
@@ -105,13 +93,11 @@ body {
   100% { transform: translate(0, 0) rotate(360deg); }
 }
 
-/* Keep text and logo above glowing background */
 .shoe-container {
   position: relative;
   z-index: 1;
 }
 
-/* --- Responsive --- */
 @media (max-width: 700px) {
   .shoe-container img {
     width: 220px;

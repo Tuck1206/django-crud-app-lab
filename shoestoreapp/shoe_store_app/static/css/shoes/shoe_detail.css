@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;600&display=swap');
 
 :root {
-  --accent: #00fff2;
-  --accent2: #00b3ff;
+  --accent: #ff0000;
+  --accent2: #ff0015;
   --danger: #ff3b6a;
   --warn: #ffc107;
-  --bg-dark: #04050a;
+  --bg-dark: #020309;
   --text-light: #e5e7eb;
   --text-muted: #8c8c9c;
   --card-bg: rgba(20, 22, 30, 0.85);
@@ -30,7 +30,7 @@ body {
   padding: 2rem;
   background: var(--card-bg);
   border-radius: 25px;
-  box-shadow: 0 0 45px rgba(0, 255, 255, 0.15);
+  box-shadow: 0 0 45px rgba(255, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   animation: fadeInUp 1s ease;
 }
@@ -39,14 +39,14 @@ body {
   width: 350px;
   height: auto;
   border-radius: 20px;
-  border: 1px solid rgba(0, 255, 255, 0.25);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+  border: 1px solid rgba(255, 0, 0, 0.25);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .shoe-img img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 60px rgba(0, 255, 255, 0.6);
+  box-shadow: 0 0 60px rgba(255, 0, 0, 0.6);
 }
 
 .shoe-details {
@@ -58,7 +58,7 @@ body {
 .shoe-details h1 {
   font-family: 'Orbitron', sans-serif;
   color: var(--accent);
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
 }
@@ -74,8 +74,8 @@ body {
   background: rgba(10, 12, 18, 0.85);
   padding: 2rem;
   border-radius: 15px;
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.1);
 }
 
 .subsection-title {
@@ -96,13 +96,13 @@ body {
   width: 90px;
   margin: 0.3rem;
   border-radius: 10px;
-  border: 1px solid rgba(0, 255, 255, 0.25);
+  border: 1px solid rgba(255, 0, 0, 0.25);
   transition: transform 0.3s ease;
 }
 
 .subsection-title img:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.5);
 }
 
 .accessory-container {
@@ -177,12 +177,12 @@ body {
 .btn.warn {
   background: var(--warn);
   color: #000;
-  box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+  box-shadow: 0 0 20px rgba(255, 7, 7, 0.3);
 }
 
 .btn.warn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 35px rgba(255, 193, 7, 0.5);
+  box-shadow: 0 0 35px rgba(255, 7, 7, 0.5);
 }
 
 .shoe-actions {
